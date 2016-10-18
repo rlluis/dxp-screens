@@ -4,84 +4,78 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.ddlrecordset.DDLRecordSetService;
-import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
-import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ListaFormularios extends AppCompatActivity implements BaseListListener<AssetEntry> {
+public class ListaFormularios extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    AssetListScreenlet ddlListScreenlet;
+	private List<String> strings = new ArrayList<>();
+	private List<JSONObject> objects = new ArrayList<>();
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_lista_formularios);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_formularios);
+		ListView list = (ListView) findViewById(R.id.list);
+		final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strings);
+		list.setAdapter(adapter);
+		list.setOnItemClickListener(this);
 
-        ddlListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_forms);
-        ddlListScreenlet.setListener(this);
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("visible","false");
-        ddlListScreenlet.setCustomEntryQuery(map);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
 
-    }
+				Session session = SessionContext.createSessionFromCurrentSession();
+				DDLRecordSetService service = new DDLRecordSetService(session);
+				JSONArray jsonArray = new JSONArray();
+				jsonArray.put(LiferayServerContext.getGroupId());
+				try {
+					JSONArray array = service.getRecordSets(jsonArray);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+					for (int i = 0; i < array.length(); i++) {
+						JSONObject jsonObject = array.getJSONObject(i);
+						strings.add(jsonObject.getString("nameCurrentValue"));
+						objects.add(jsonObject);
+					}
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							adapter.notifyDataSetChanged();
+						}
+					});
 
-        ddlListScreenlet.loadPage(0);
-    }
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
 
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Intent intent = new Intent(ListaFormularios.this, FormActivity.class);
 
-    @Override
-    public void onListPageFailed(int startRow, Exception e) {
-
-    }
-
-    @Override
-    public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-
-    }
-
-    @Override
-    public void onListItemSelected(final AssetEntry element, View view) {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Session session = SessionContext.createSessionFromCurrentSession();
-                DDLRecordSetService service = new DDLRecordSetService(session);
-                try {
-                    JSONObject jsonObject = service.getRecordSet(element.getEntryId());
-
-                    Intent intent = new Intent(ListaFormularios.this, FormActivity.class);
-
-                    intent.putExtra("recordSetId", element.getEntryId());
-                    //intent.putExtra("structureId", jsonObject.getString("DDMStructureId"));
-                    intent.putExtra("structureId",element.getEntryId()-4);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-
-
-    }
-
-    @Override
-    public void error(Exception e, String userAction) {
-
-    }
+		JSONObject jsonObject = objects.get(position);
+		try {
+			intent.putExtra("recordSetId", jsonObject.getLong("recordSetId"));
+			intent.putExtra("structureId", jsonObject.getLong("DDMStructureId"));
+			startActivity(intent);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
 }
