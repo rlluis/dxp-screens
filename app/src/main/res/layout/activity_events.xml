@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:liferay="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_events"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rlluis.liferay.dxpbundle.EventsActivity">
+
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:id="@+id/web_men"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        liferay:cachePolicy="REMOTE_ONLY"
+        liferay:templateId="@integer/event_tmpl"
+        />
+
+</RelativeLayout>

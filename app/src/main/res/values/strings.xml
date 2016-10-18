@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">DXPBundle</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="classname">30301</string>
+    <string name="classnameForms">31211</string>
+    <string name="classnameBlogs">20011</string>
+
+    <string-array name="menu_items">
+        <item>Events</item>
+        <item>Form</item>
+    </string-array>
+
+    <integer name="article_id_event">35187</integer>
+    <integer name="ddl_recordset_id_review">35234</integer>
+    <integer name="ddl_structure_id_review">35230</integer>
+    <integer name="event_tmpl">33705</integer>
+    <integer name="journal_group">20147</integer>
+
+
+</resources>

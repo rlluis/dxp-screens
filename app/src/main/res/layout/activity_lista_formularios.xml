@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:liferay="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_lista_formularios"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rlluis.liferay.dxpbundle.ListaFormularios">
+
+    <!--<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+        android:id="@+id/ddl_list_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        liferay:autoLoad="false"
+        liferay:labelFields="Nombre"
+        liferay:cachePolicy="REMOTE_FIRST"
+        liferay:recordSetId="@integer/ddl_recordset_id_review"
+        />
+    -->
+
+    <com.liferay.mobile.screens.asset.list.AssetListScreenlet
+        android:id="@+id/asset_list_forms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        liferay:autoLoad="true"
+        liferay:classNameId="@string/classnameForms"
+        liferay:groupId="@integer/journal_group"
+        />
+</RelativeLayout>
