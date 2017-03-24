@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="rlluis.liferay.dxpbundle.MainActivity">
+    tools:context="rlluis.liferay.dxpbundle.activities.MainActivity">
 
     <com.liferay.mobile.screens.auth.login.LoginScreenlet
         android:id="@+id/login_screenlet"

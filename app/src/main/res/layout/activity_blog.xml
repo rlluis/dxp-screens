@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="rlluis.liferay.dxpbundle.BlogActivity">
+    tools:context="rlluis.liferay.dxpbundle.activities.BlogActivity">
 
 <com.liferay.mobile.screens.base.BaseScreenlet
     android:id="@+id/asset_blog"

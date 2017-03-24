@@ -8,6 +8,9 @@
         <item
             android:id="@+id/nav_form"
             android:title="Form" />
+        <item
+            android:id="@+id/nav_webat"
+            android:title="Content" />
     </group>
 
     <item android:title="Communicate">

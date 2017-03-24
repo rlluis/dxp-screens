@@ -5,7 +5,7 @@
     android:id="@+id/activity_events"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rlluis.liferay.dxpbundle.EventsActivity">
+    tools:context="rlluis.liferay.dxpbundle.activities.EventsActivity">
 
     <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
         android:id="@+id/web_men"

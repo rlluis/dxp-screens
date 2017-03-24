@@ -5,7 +5,7 @@
     android:id="@+id/activity_lista_eventos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rlluis.liferay.dxpbundle.ListaEventos">
+    tools:context="rlluis.liferay.dxpbundle.activities.ListaEventos">
 
     <com.liferay.mobile.screens.asset.list.AssetListScreenlet
         android:id="@+id/asset_list_screenlet"

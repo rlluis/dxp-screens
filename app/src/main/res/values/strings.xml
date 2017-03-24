@@ -13,6 +13,7 @@
     <string-array name="menu_items">
         <item>Events</item>
         <item>Form</item>
+        <item>WebContent</item>
     </string-array>
 
     <integer name="article_id_event">35187</integer>
@@ -21,5 +22,9 @@
     <integer name="event_tmpl">33705</integer>
     <integer name="journal_group">20147</integer>
 
+    <!--<integer name="user_segment">37975</integer>-->
+    <string name="user_segment">34923</string>
+    <string name="webcontent_normal">34828</string>
+    <string name="webcontent_usersegment">34904</string>
 
 </resources>
