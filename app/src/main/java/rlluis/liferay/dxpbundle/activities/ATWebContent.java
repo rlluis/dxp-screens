@@ -1,7 +1,10 @@
 package rlluis.liferay.dxpbundle.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.liferay.mobile.android.callback.typed.JSONArrayCallback;
 import com.liferay.mobile.android.service.Session;
@@ -17,14 +20,20 @@ import org.json.JSONObject;
 import rlluis.liferay.dxpbundle.mobileSDK.GetUserSegment;
 import rlluis.liferay.dxpbundle.R;
 
-public class ATWebContent extends AppCompatActivity {
+public class ATWebContent extends AppCompatActivity implements View.OnClickListener{
 
     WebContentDisplayScreenlet webcontent;
-    String articulo="";
+    Button  buttonContinue;
+
+    private Button _continueButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atweb_content);
+
+        _continueButton = (Button) findViewById(R.id.continue_button);
+        _continueButton.setOnClickListener(this);
 
         //cálculo de segmentos a los que pertenece el usuario, si pertenece al segmento XX, entonces webcontent XXX, si no, webcontent YYY
 
@@ -49,23 +58,20 @@ public class ATWebContent extends AppCompatActivity {
                         for (int i = 0; i < result.length(); i++) {
                             JSONObject jsonObject = result.getJSONObject(i);
                             segmento= jsonObject.getString("userSegmentId").toString();
-                            //segmento= result.getString("userSegmentId").toString();
                             if (segmento.equals(userSegmentId)){
                                 resultado=true;
                             }
                         }
                     }
-
+                    String articulo="";
                     if (resultado){
                         articulo=getString(R.string.webcontent_usersegment);
                     }else{
                         articulo=getString(R.string.webcontent_normal);
                     }
-
-                    //boolean enSegmento = service.userInSegment(user.getId(), getString(R.string.user_segment),userSegmentActive);
                     webcontent = (WebContentDisplayScreenlet) findViewById(R.id.web_atarticle);
-                    webcontent.setArticleId(articulo);
-                    webcontent.load();
+                    //webcontent.setArticleId(articulo);
+                    //webcontent.load();
                 } catch (Exception e){
                     e.printStackTrace();
                 }}
@@ -82,5 +88,8 @@ public class ATWebContent extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(this, SurveyActivity.class));
+    }
 }

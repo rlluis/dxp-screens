@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import rlluis.liferay.dxpbundle.R;
 
-public class UserPortrait extends AppCompatActivity {
+public class SurveyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_portrait);
+        setContentView(R.layout.activity_survey);
     }
 }

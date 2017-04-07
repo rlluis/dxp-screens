@@ -11,7 +11,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import rlluis.liferay.dxpbundle.R;
-import rlluis.liferay.dxpbundle.activities.MenuActivity;
+import rlluis.liferay.dxpbundle.activities.MainActivity;
 import com.liferay.mobile.screens.push.AbstractPushService;
 
 import org.json.JSONException;
@@ -25,7 +25,7 @@ public class PushService extends AbstractPushService {
 	public static final int NOTIFICATION_ID = 2;
 
 	public static void createGlobalNotification(String title, String description, Context context) {
-		createGlobalNotification(title, description, context, R.id.nav_webat);
+		createGlobalNotification(title, description, context, R.id.activity_main);
 	}
 
 	public static void createGlobalNotification(String title, String description, Context context, int fragmentId) {
@@ -48,7 +48,7 @@ public class PushService extends AbstractPushService {
 	}
 
 	private static PendingIntent createPendingIntentForNotifications(Context context, int fragmentId) {
-		Intent resultIntent = new Intent(context, MenuActivity.class);
+		Intent resultIntent = new Intent(context, MainActivity.class);
 		resultIntent.putExtra("fragmentId", fragmentId);
 
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);

@@ -6,7 +6,7 @@
     <string name="liferay_server">http://10.0.2.2:8080</string>
     <integer name="liferay_portal_version">70</integer>
     <integer name="liferay_company_id">20116</integer>
-    <integer name="liferay_group_id">20143</integer>
+    <integer name="liferay_group_id">36849</integer>
 
     <string name="anonymous_user">anonymous1@liferay.com</string>
     <string name="anonymous_password">anonymous1</string>
