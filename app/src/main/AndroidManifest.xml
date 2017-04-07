@@ -19,8 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ATWebContent" />
-        <activity android:name=".activities.NotificationActivity" />
-
         <receiver
             android:name=".notification.PushReceiver"
             android:exported="true"
