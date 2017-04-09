@@ -8,11 +8,11 @@
     <color name="material_primary_text">#212121</color>
     <color name="material_secondary_text">#727272</color>
 
-    <color name="colorPrimary">#29527F</color>
-    <color name="colorPrimaryDark">#29527F</color>
-    <color name="colorPrimaryLight">#B2DFDB</color>
-    <color name="colorAccent">#B2DFDB</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimary">#e44740</color>
+    <color name="colorPrimaryDark">#8f2a25</color>
+    <color name="colorPrimaryLight">#fe4e46</color>
+    <color name="colorAccent">#fe4e46</color>
+    <color name="colorPrimaryText">#303030</color>
     <color name="colorSecondaryText">#727272</color>
 
 </resources>

@@ -35,47 +35,50 @@ public class ATWebContent extends AppCompatActivity implements View.OnClickListe
         _continueButton = (Button) findViewById(R.id.continue_button);
         _continueButton.setOnClickListener(this);
 
-        //cálculo de segmentos a los que pertenece el usuario, si pertenece al segmento XX, entonces webcontent XXX, si no, webcontent YYY
-
         Session session = SessionContext.createSessionFromCurrentSession();
         User user = SessionContext.getCurrentUser();
         GetUserSegment service = new GetUserSegment(session);
-        boolean userSegmentActive=true;
+        final boolean userSegmentActive=true;
         session.setCallback(new JSONArrayCallback() {
-            @Override
-            public void onFailure(Exception exception) {
-                LiferayLogger.e(exception.toString());
-            }
+        @Override
+        public void onFailure(Exception exception) {
+            LiferayLogger.e(exception.toString());
+        }
 
-            @Override
-            public void onSuccess(JSONArray result) {
-                String userSegmentId=getString(R.string.user_segment);
-                Boolean resultado=false;
-                try {
-
-                    if (result != null) {
-                        String segmento="";
-                        for (int i = 0; i < result.length(); i++) {
-                            JSONObject jsonObject = result.getJSONObject(i);
-                            segmento= jsonObject.getString("userSegmentId").toString();
-                            if (segmento.equals(userSegmentId)){
-                                resultado=true;
-                            }
+        @Override
+        public void onSuccess(JSONArray result) {
+            String userSegmentId=getString(R.string.user_segment);
+            String articulo = calculoArticulo(result,userSegmentId);
+            webcontent = (WebContentDisplayScreenlet) findViewById(R.id.web_atarticle);
+            webcontent.setArticleId(articulo);
+            webcontent.load();
+            if (articulo==getString(R.string.webcontent_normal)){_continueButton.setVisibility(View.INVISIBLE);}
+        }
+        private String calculoArticulo(JSONArray result,String userSegmentId) {
+            Boolean resultado = false;
+            String articulo = "";
+            try {
+                if (result != null) {
+                    String segmento = "";
+                    for (int i = 0; i < result.length(); i++) {
+                        JSONObject jsonObject = result.getJSONObject(i);
+                        segmento = jsonObject.getString("userSegmentId").toString();
+                        if (segmento.equals(userSegmentId)) {
+                            resultado = true;
                         }
                     }
-                    String articulo="";
-                    if (resultado){
-                        articulo=getString(R.string.webcontent_usersegment);
-                    }else{
-                        articulo=getString(R.string.webcontent_normal);
-                    }
-                    webcontent = (WebContentDisplayScreenlet) findViewById(R.id.web_atarticle);
-                    //webcontent.setArticleId(articulo);
-                    //webcontent.load();
-                } catch (Exception e){
-                    e.printStackTrace();
-                }}
-        });
+                }
+
+                if (resultado) {
+                    articulo = getString(R.string.webcontent_usersegment);
+                } else {
+                    articulo = getString(R.string.webcontent_normal);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return articulo;
+        }});
 
         try {
             service.getUserSegments(user.getId(), userSegmentActive);
@@ -84,8 +87,6 @@ public class ATWebContent extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 
     @Override

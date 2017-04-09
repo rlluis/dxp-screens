@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         liferay:cachePolicy="REMOTE_ONLY"
         android:layout_above="@+id/continue_button"
-        liferay:articleId="@string/webcontent_usersegment"
         />
 
     <Button
