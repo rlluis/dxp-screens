@@ -52,7 +52,7 @@ public class ATWebContent extends AppCompatActivity implements View.OnClickListe
             webcontent = (WebContentDisplayScreenlet) findViewById(R.id.web_atarticle);
             webcontent.setArticleId(articulo);
             webcontent.load();
-            if (articulo==getString(R.string.webcontent_normal)){_continueButton.setVisibility(View.INVISIBLE);}
+            if (articulo==getString(R.string.webcontent_usersegment)){_continueButton.setVisibility(View.VISIBLE);}
         }
         private String calculoArticulo(JSONArray result,String userSegmentId) {
             Boolean resultado = false;
