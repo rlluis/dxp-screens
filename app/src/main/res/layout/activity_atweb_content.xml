@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         liferay:cachePolicy="REMOTE_ONLY"
         android:layout_above="@+id/continue_button"
-        android:visibility="invisible"
         />
 
     <Button
@@ -27,6 +26,7 @@
         android:text="@string/ContinueButton"
         style="?android:button"
         android:layout_alignParentBottom="true"
+        android:visibility="invisible"
         />
 
 </RelativeLayout>
